@@ -1,0 +1,39 @@
+# Gambas Form File 3.0
+
+{ Form Form
+  MoveScaled(0,0,64,64)
+  Background = &H9FE7FF&
+  { mainTitle Label
+    MoveScaled(8,3,47,9)
+    Font = Font["Ubuntu Light,Bold,+10"]
+    Foreground = &H2980B9&
+    Text = ("Hotel Services")
+    Alignment = Align.Center
+  }
+  { roomBtn Button
+    MoveScaled(14,25,35,6)
+    Font = Font["+3"]
+    Text = ("Rooms")
+  }
+  { guestBtn Button
+    MoveScaled(14,16,35,6)
+    Font = Font["+3"]
+    Text = ("Guests")
+    Default = True
+  }
+  { eventsBtn Button
+    MoveScaled(14,34,35,6)
+    Font = Font["+3"]
+    Text = ("Events")
+  }
+  { infoBtn Button
+    MoveScaled(14,43,35,6)
+    Font = Font["+3"]
+    Text = ("Information")
+  }
+  { exitBtn Button
+    MoveScaled(14,52,35,6)
+    Font = Font["+3"]
+    Text = ("Exit")
+  }
+}

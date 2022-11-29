@@ -1,0 +1,75 @@
+# Gambas Form File 3.0
+
+{ Form Form
+  MoveScaled(0,0,64,64)
+  Background = &H9FE7FF&
+  { roomList ListBox
+    MoveScaled(4,9,25,41)
+  }
+  { cIn Label
+    MoveScaled(34,14,25,4)
+    Text = ("Check In Date :")
+  }
+  { cOut Label
+    MoveScaled(34,23,25,4)
+    Text = ("Check Out Date :")
+  }
+  { cInDate DateBox
+    MoveScaled(34,18,25,4)
+  }
+  { cOutDate DateBox
+    MoveScaled(34,27,25,4)
+  }
+  { room Label
+    MoveScaled(34,9,14,4)
+    Text = ("Room No. :")
+  }
+  { roomNo ValueBox
+    MoveScaled(49,9,10,4)
+  }
+  { register Label
+    MoveScaled(34,4,25,4)
+    Font = Font["Bold,+3"]
+    Text = ("Register a Room")
+    Alignment = Align.Center
+  }
+  { assRoom Button
+    MoveScaled(34,51,25,4)
+    Text = ("Assign Room")
+  }
+  { delete Button
+    MoveScaled(4,56,25,4)
+    Text = ("Remove Room")
+  }
+  { details Button
+    MoveScaled(4,51,25,4)
+    Text = ("Show Details")
+  }
+  { booked Label
+    MoveScaled(4,4,25,4)
+    Font = Font["Bold,+3"]
+    Text = ("Booked Rooms")
+    Alignment = Align.Center
+  }
+  { Separator1 Separator
+    MoveScaled(31,4,1,56)
+  }
+  { back Button
+    MoveScaled(34,56,25,4)
+    Text = ("Go Back")
+  }
+  { guest Label
+    MoveScaled(34,37,25,4)
+    Text = ("Guest :")
+  }
+  { guestSelect ComboBox
+    MoveScaled(34,41,25,4)
+  }
+  { floor Label
+    MoveScaled(34,32,14,4)
+    Text = ("Floor No. :")
+  }
+  { floorNo ValueBox
+    MoveScaled(49,32,10,4)
+  }
+}

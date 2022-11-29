@@ -1,0 +1,164 @@
+' Gambas class file
+
+Public Sub back_Click()
+
+  FMain.Load
+  FMain.Show
+  Me.Close()
+
+End
+
+
+Public Sub assRoom_Click()
+
+  Dim room As Collection = ["in": cInDate.Text]
+  room.Add(cOutDate.Text, "out")
+  room.Add(roomNo.Text, "room")
+  room.Add(floorNo.Text, "floor")
+  room.Add(guestSelect.Text, "guest")
+  
+  roomList.Add(roomNo.Text)
+  
+  Dim fl As File
+  
+  fl = Open User.Home & "/rooms.txt" For Append Watch
+  Write #fl, room["room"] & "\n"
+  Write #fl, room["in"] & "\n"
+  Write #fl, room["out"] & "\n"
+  Write #fl, room["floor"] & "\n"
+  Write #fl, room["guest"] & "\n"
+  Close #fl
+
+End
+
+Public Sub Form_Open()
+  
+  Dim room As File
+  Dim i As Integer = 0
+  Dim ln As String
+  
+  room = Open User.Home & "/rooms.txt" For Read
+  
+  While Not Eof(room)
+    Line Input #room, ln
+    If i % 5 = 0 Then
+      roomList.Add(ln)
+    Endif
+    i = i + 1
+  Wend
+  Close #room
+  
+  Dim guest As File
+  i = 0
+  guest = Open User.Home & "/guests.txt" For Read
+  
+  While Not Eof(guest)
+    Line Input #guest, ln
+    If i % 6 = 0 Then
+      guestSelect.Add(ln)
+    Endif
+    i = i + 1
+  Wend
+  Close #guest
+  
+End
+
+Public Sub details_Click()
+
+  Dim room As File
+  Dim i As Integer = 0
+  Dim k As Integer = 0
+  Dim ln As String
+  
+  Dim lbls As String[] = ["Room No. : ", "Check In Date : ", "Check Out Date : ", "Floor No. :", "Guest : "]
+  Dim wids As Integer[] = [72, 120, 120, 80, 72]
+  
+  room = Open User.Home & "/rooms.txt" For Read
+  While Not Eof(room)
+    Line Input #room, ln
+    If ln = roomList.Text Then
+      For i As Integer = 0 To 4
+        
+        Dim lb As Label
+        lb = New Label(DetailForm)
+        lb.Text = lbls[i]
+        lb.X = 32
+        lb.Y = (i + 1) * 8 + (i + 2) * 32 + k
+        lb.W = wids[i]
+        lb.H = 32
+        
+        
+        Dim vl As TextBox
+        vl = New TextBox(DetailForm)
+        vl.Text = ln
+        vl.X = wids[i] + 32 + 8
+        vl.Y = (i + 1) * 8 + (i + 2) * 32 + k
+        vl.W = 320 - (wids[i] + 32 + 8 + 32)
+        vl.H = 32
+        
+        
+        Line Input #room, ln
+      Next
+    Endif
+  Wend
+  Close #room
+  
+  Dim title As Label
+  title = New Label(DetailForm)
+  title.Text = "Room Detail"
+  title.Name = "title"
+  title.X = 32
+  title.Y = 32
+  title.H = 32
+  title.W = 248
+  title.Alignment = Align.Center
+  title.Font = Font["Bold,+3"]
+  
+  Dim cl As Button
+  cl = New Button(DetailForm) As "CloseBtn"
+  cl.X = 152
+  cl.Y = 288
+  cl.W = 136
+  cl.H = 32
+  cl.Name = "close"
+  cl.Text = "Close"
+  
+  DetailForm.W = 320
+  DetailForm.H = 352
+  DetailForm.Title = "Room Detail"
+  DetailForm.Load(RoomForm)
+  DetailForm.Show()
+  
+End
+
+Public Sub CloseBtn_click()
+  
+  DetailForm.Close()
+  
+End
+
+Public Sub delete_Click()
+
+  Dim room As File
+  Dim ln As String
+  Dim i As Integer = 0
+  Dim newfile As String
+  
+  room = Open User.Home & "/rooms.txt" For Read Watch
+  
+  While Not Eof(room)
+    Line Input #room, ln
+    If (ln = roomList.Text) Or (i > 0 And i < 5) Then
+      i = i + 1
+    Else
+      newfile &= ln & "\n"
+    Endif
+  Wend
+  Close #room
+
+  room = Open User.Home & "/rooms.txt" For Create Watch
+  Write #room, newfile
+  
+  roomList.Remove(roomList.Index)
+
+End

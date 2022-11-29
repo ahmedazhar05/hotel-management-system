@@ -1,0 +1,129 @@
+# Gambas Form File 3.0
+
+{ Form Form
+  MoveScaled(0,0,64,64)
+  Background = &H9FE7FF&
+  { roomPrice Label
+    MoveScaled(4,4,56,4)
+    Font = Font["Bold,+3"]
+    Text = ("Room Price")
+    Alignment = Align.Center
+  }
+  { adult Label
+    MoveScaled(4,10,11,4)
+    Text = ("Adults No.")
+    Alignment = Align.Center
+  }
+  { adultNo ComboBox
+    MoveScaled(4,14,11,4)
+    List = [("1"), ("2"), ("3"), ("4")]
+    Text = ("1")
+  }
+  { child Label
+    MoveScaled(16,10,12,4)
+    Text = ("Children No.")
+    Alignment = Align.Center
+  }
+  { childNo ComboBox
+    MoveScaled(16,14,12,4)
+    List = [("1"), ("2")]
+    Text = ("1")
+  }
+  { days Label
+    MoveScaled(29,10,12,4)
+    Text = ("Days Of Stay")
+    Alignment = Align.Center
+  }
+  { Separator1 Separator
+    MoveScaled(42,10,1,9)
+  }
+  { price Label
+    MoveScaled(44,10,16,4)
+    Font = Font["Bold"]
+    Text = ("Calculated Price")
+    Alignment = Align.Center
+  }
+  { rs Label
+    MoveScaled(44,14,3,4)
+    Text = ("Rs.")
+  }
+  { noDays SpinBox
+    MoveScaled(29,14,12,4)
+    MinValue = 1
+    Value = 1
+  }
+  { priceValue ValueBox
+    MoveScaled(47,14,13,4)
+  }
+  { Separator2 Separator
+    MoveScaled(4,19,56,1)
+  }
+  { eventCost Label
+    MoveScaled(4,22,56,4)
+    Font = Font["Bold,+3"]
+    Text = ("Event Price")
+    Alignment = Align.Center
+  }
+  { eventsList ComboBox
+    MoveScaled(4,32,37,4)
+    Text = (" ")
+  }
+  { event Label
+    MoveScaled(4,28,37,4)
+    Text = ("Event")
+    Alignment = Align.Center
+  }
+  { Separator3 Separator
+    MoveScaled(42,28,1,9)
+  }
+  { evCost Label
+    MoveScaled(44,28,16,4)
+    Font = Font["Bold"]
+    Text = ("Ticket Cost")
+    Alignment = Align.Center
+  }
+  { rs2 Label
+    MoveScaled(44,32,3,4)
+    Text = ("Rs.")
+  }
+  { ticketCost ValueBox
+    MoveScaled(47,32,13,4)
+  }
+  { Separator4 Separator
+    MoveScaled(4,37,56,1)
+  }
+  { calendarInfo Label
+    MoveScaled(4,40,56,4)
+    Font = Font["Bold,+3"]
+    Text = ("Calendar")
+    Alignment = Align.Center
+  }
+  { dates Label
+    MoveScaled(4,46,19,4)
+    Text = ("Date")
+    Alignment = Align.Center
+  }
+  { Separator5 Separator
+    MoveScaled(24,46,1,9)
+  }
+  { dateInfo Label
+    MoveScaled(26,46,6,4)
+    Font = Font["Bold"]
+    Text = ("Info")
+    Alignment = Align.Center
+  }
+  { dateSelect DateBox
+    MoveScaled(4,50,19,4)
+  }
+  { info TextArea
+    MoveScaled(33,46,27,8)
+  }
+  { back Button
+    MoveScaled(33,56,27,4)
+    Text = ("Go Back")
+  }
+  { calc Button
+    MoveScaled(4,56,27,4)
+    Text = ("Calculate")
+  }
+}

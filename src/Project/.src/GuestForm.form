@@ -1,0 +1,87 @@
+# Gambas Form File 3.0
+
+{ Form Form
+  MoveScaled(0,0,64,64)
+  Background = &H9FE7FF&
+  { guestList ListBox
+    MoveScaled(4,9,25,36)
+  }
+  { name Label
+    MoveScaled(34,9,25,4)
+    Text = ("Guest Name :")
+  }
+  { phone Label
+    MoveScaled(34,18,25,4)
+    Text = ("Contact Number :")
+  }
+  { adultNo ComboBox
+    MoveScaled(49,27,10,4)
+    List = [("1"), ("2"), ("3"), ("4")]
+    Text = ("1")
+  }
+  { adult Label
+    MoveScaled(34,27,14,4)
+    Text = ("Adults No.  :")
+  }
+  { childNo ComboBox
+    MoveScaled(49,32,10,4)
+    List = [("1"), ("2")]
+    Text = ("1")
+  }
+  { child Label
+    MoveScaled(34,32,14,4)
+    Text = ("Children No. :")
+  }
+  { address Label
+    MoveScaled(34,37,25,4)
+    Text = ("Address :")
+  }
+  { addr TextArea
+    MoveScaled(34,41,25,9)
+  }
+  { register Label
+    MoveScaled(34,4,25,4)
+    Font = Font["Bold,+3"]
+    Text = ("Register Guest")
+    Alignment = Align.Center
+  }
+  { addGuest Button
+    MoveScaled(34,56,25,4)
+    Text = ("Add Guest")
+  }
+  { delete Button
+    MoveScaled(4,51,25,4)
+    Text = ("Remove Guest")
+  }
+  { details Button
+    MoveScaled(4,46,25,4)
+    Text = ("Show Details")
+  }
+  { current Label
+    MoveScaled(4,4,25,4)
+    Font = Font["Bold,+3"]
+    Text = ("Current Guests")
+    Alignment = Align.Center
+  }
+  { Separator1 Separator
+    MoveScaled(31,4,1,56)
+  }
+  { back Button
+    MoveScaled(4,56,25,4)
+    Text = ("Go Back")
+  }
+  { guestName TextBox
+    MoveScaled(34,13,25,4)
+  }
+  { contact ValueBox
+    MoveScaled(38,22,21,4)
+  }
+  { rs Label
+    MoveScaled(34,22,4,4)
+    Text = ("+91")
+  }
+  { paid CheckBox
+    MoveScaled(49,51,10,4)
+    Text = ("Paid")
+  }
+}

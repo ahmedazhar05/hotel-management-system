@@ -1,0 +1,80 @@
+# Gambas Form File 3.0
+
+{ Form Form
+  MoveScaled(0,0,64,64)
+  Background = &H9FE7FF&
+  { eventList ListBox
+    MoveScaled(4,9,25,36)
+  }
+  { date Label
+    MoveScaled(34,18,25,4)
+    Text = ("Date :")
+  }
+  { evDate DateBox
+    MoveScaled(34,22,25,4)
+  }
+  { startingTime Label
+    MoveScaled(34,36,11,4)
+    Text = ("Event Time :")
+  }
+  { more Label
+    MoveScaled(34,41,25,4)
+    Text = ("More Information :")
+  }
+  { info TextArea
+    MoveScaled(34,45,25,10)
+  }
+  { title Label
+    MoveScaled(34,4,25,4)
+    Font = Font["Bold,+3"]
+    Text = ("Register an Event")
+    Alignment = Align.Center
+  }
+  { createEvent Button
+    MoveScaled(34,56,25,4)
+    Text = ("Create Event")
+  }
+  { delete Button
+    MoveScaled(4,51,25,4)
+    Text = ("Remove Event")
+  }
+  { details Button
+    MoveScaled(4,46,25,4)
+    Text = ("Show Details")
+  }
+  { scheduled Label
+    MoveScaled(4,4,25,4)
+    Font = Font["Bold,+3"]
+    Text = ("Scheduled Events")
+    Alignment = Align.Center
+  }
+  { Separator1 Separator
+    MoveScaled(31,4,1,56)
+  }
+  { back Button
+    MoveScaled(4,56,25,4)
+    Text = ("Go Back")
+  }
+  { priceLabel Label
+    MoveScaled(34,27,25,4)
+    Text = ("Price :")
+  }
+  { time TextBox
+    MoveScaled(46,36,13,4)
+  }
+  { name Label
+    MoveScaled(34,9,25,4)
+    Text = ("Name :")
+  }
+  { evName TextBox
+    MoveScaled(34,13,25,4)
+  }
+  { rs2 Label
+    MoveScaled(34,31,3,4)
+    Text = ("Rs.")
+  }
+  { price ValueBox
+    MoveScaled(38,31,21,4)
+    Text = ("0")
+  }
+}

@@ -1,0 +1,98 @@
+' Gambas class file
+
+
+Public Sub back_Click()
+
+  FMain.Load
+  FMain.Show
+  Me.Close()
+
+End
+
+Public Sub calc_Click()
+
+  Dim price As Float = 0
+  Dim cost As Float = 0
+  
+  price = (Val(adultNo.Text) * 350 + Val(childNo.Text) * 150) * Val(noDays.Text)
+  priceValue.Text = price
+  
+  If eventsList.Text = " " Then
+    cost = 0
+  Else
+    Dim ev As File
+    Dim i As Integer = 0
+    Dim ln As String
+    
+    ev = Open User.Home & "/events.txt" For Read
+    
+    While Not Eof(ev)
+      Line Input #ev, ln
+      If (ln = eventsList.Text) Or (i > 0 And i < 5) Then
+        i = i + 1
+        If i = 3
+          cost = Val(ln)
+        Endif
+      Endif
+    Wend
+    Close #ev
+  Endif
+  
+  ticketCost.Text = cost
+
+End
+
+Public Sub Form_Open()
+  
+  Dim ev As File
+  Dim i As Integer = 0
+  Dim ln As String
+  
+  ev = Open User.Home & "/events.txt" For Read
+  
+  While Not Eof(ev)
+    Line Input #ev, ln
+    If i % 5 = 0 Then
+      eventsList.Add(ln)
+    Endif
+    i = i + 1
+  Wend
+  Close #ev
+  
+End
+
+Public Sub dateSelect_Leave()
+
+  Dim ev As File
+  Dim i As Integer = 0
+  Dim ln As String
+  Dim inf As String = ""
+  Dim b As Boolean = True
+  
+  ev = Open User.Home & "/events.txt" For Read
+  
+  While Not Eof(ev) And b
+    Line Input #ev, ln
+    If i % 5 = 0 Then
+      inf = ""
+    Endif
+    If dateSelect.Text = ln Then
+      inf &= ln & "\n"
+      Line Input #ev, ln
+      inf &= ln & "\n"
+      Line Input #ev, ln
+      inf &= ln & "\n"
+      Line Input #ev, ln
+      b = False
+    Endif
+    inf &= ln & "\n"
+    i = i + 1
+  Wend
+  Close #ev
+
+  If b
+    inf = ""
+  Endif
+    
+  info.Text = inf
+End

@@ -1,0 +1,166 @@
+' Gambas class file
+
+Public Sub back_Click()
+
+  FMain.Load
+  FMain.Show
+  Me.Close()
+
+End
+
+Public Sub addGuest_Click()
+
+  Dim guest As Collection = ["name": guestName.Text]
+  guest.Add(contact.Text, "num")
+  guest.Add(adultNo.Text, "ad")
+  guest.Add(childNo.Text, "ch")
+  guest.Add(addr.Text, "add")
+  If paid.Value Then
+    guest.Add("Complete", "paid")
+  Else
+    guest.Add("Due", "paid")
+  Endif
+  
+  guestList.Add(guestName.Text)
+  
+  Dim fl As File
+  
+  fl = Open User.Home & "/guests.txt" For Append Watch
+  Write #fl, guest["name"] & "\n"
+  Write #fl, guest["num"] & "\n"
+  Write #fl, guest["ad"] & "\n"
+  Write #fl, guest["ch"] & "\n"
+  Write #fl, guest["add"] & "\n"
+  Write #fl, guest["paid"] & "\n"
+  Close #fl
+
+End
+
+Public Sub Form_Open()
+  
+  Dim guest As File
+  Dim i As Integer = 0
+  Dim ln As String
+  
+  guest = Open User.Home & "/guests.txt" For Read
+  
+  While Not Eof(guest)
+    Line Input #guest, ln
+    If i % 6 = 0 Then
+      guestList.Add(ln)
+    Endif
+    i = i + 1
+  Wend
+  Close #guest
+  
+End
+
+Public Sub details_Click()
+
+  Dim guest As File
+  Dim i As Integer = 0
+  Dim k As Integer = 0
+  Dim ln As String
+  
+  Dim lbls As String[] = ["Name : ", "Contact : ", "No. of Adults : ", "No. of Children : ", "Address : ", "Payment : "]
+  Dim wids As Integer[] = [72, 80, 120, 120, 80, 96]
+  
+  guest = Open User.Home & "/guests.txt" For Read
+  While Not Eof(guest)
+    Line Input #guest, ln
+    If ln = guestList.Text Then
+      For i As Integer = 0 To 5
+        
+        Dim lb As Label
+        lb = New Label(DetailForm)
+        lb.Text = lbls[i]
+        lb.X = 32
+        lb.Y = (i + 1) * 8 + (i + 2) * 32 + k
+        lb.W = wids[i]
+        lb.H = 32
+        
+        If i = 4 Then
+          k = 32
+          Dim v As TextArea
+          v = New TextArea(DetailForm)
+          v.Text = ln
+          v.X = wids[i] + 32 + 8
+          v.Y = (i + 1) * 8 + (i + 2) * 32
+          v.W = 320 - (wids[i] + 32 + 8 + 32)
+          v.H = 32 + k
+        Else
+          Dim vl As TextBox
+          vl = New TextBox(DetailForm)
+          vl.Text = ln
+          vl.X = wids[i] + 32 + 8
+          vl.Y = (i + 1) * 8 + (i + 2) * 32 + k
+          vl.W = 320 - (wids[i] + 32 + 8 + 32)
+          vl.H = 32
+        Endif
+        
+        
+        Line Input #guest, ln
+      Next
+    Endif
+  Wend
+  Close #guest
+  
+  Dim title As Label
+  title = New Label(DetailForm)
+  title.Text = "Guest Detail"
+  title.Name = "title"
+  title.X = 32
+  title.Y = 32
+  title.H = 32
+  title.W = 248
+  title.Alignment = Align.Center
+  title.Font = Font["Bold,+3"]
+  
+  Dim cl As Button
+  cl = New Button(DetailForm) As "CloseBtn"
+  cl.X = 152
+  cl.Y = 352
+  cl.W = 136
+  cl.H = 32
+  cl.Name = "close"
+  cl.Text = "Close"
+  
+  DetailForm.W = 320
+  DetailForm.H = 416
+  DetailForm.Title = "Guest Detail"
+  DetailForm.Load(GuestForm)
+  DetailForm.Show()
+  
+End
+
+Public Sub CloseBtn_click()
+  
+  DetailForm.Close()
+  
+End
+
+Public Sub delete_Click()
+
+  Dim guest As File
+  Dim ln As String
+  Dim i As Integer = 0
+  Dim newfile As String
+  
+  guest = Open User.Home & "/guests.txt" For Read Watch
+  
+  While Not Eof(guest)
+    Line Input #guest, ln
+    If (ln = guestList.Text) Or (i > 0 And i < 6) Then
+      i = i + 1
+    Else
+      newfile &= ln & "\n"
+    Endif
+  Wend
+  Close #guest
+
+  guest = Open User.Home & "/guests.txt" For Create Watch
+  Write #guest, newfile
+  
+  guestList.Remove(guestList.Index)
+
+End

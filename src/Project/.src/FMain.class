@@ -1,0 +1,40 @@
+' Gambas class file
+
+
+Public Sub guestBtn_Click()
+
+  GuestForm.Load
+  GuestForm.Show
+  FMain.Close()
+
+End
+
+Public Sub roomBtn_Click()
+
+  RoomForm.Load
+  RoomForm.Show
+  FMain.Close()
+
+End
+
+Public Sub eventsBtn_Click()
+
+  EventForm.Load
+  EventForm.Show
+  FMain.Close()
+
+End
+
+Public Sub infoBtn_Click()
+
+  InfoForm.Load
+  InfoForm.Show
+  FMain.Close()
+
+End
+
+Public Sub exitBtn_Click()
+
+  FMain.Close()
+
+End
